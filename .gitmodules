@@ -1,0 +1,3 @@
+[submodule "vendor/src/github.com/gorilla/mux"]
+	path = vendor/src/github.com/gorilla/mux
+	url = https://github.com/gorilla/mux
