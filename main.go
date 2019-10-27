@@ -1,4 +1,4 @@
-package main
+package main // import "github.com/etu/ip.failar.nu"
 
 import (
 	"github.com/gorilla/mux"
