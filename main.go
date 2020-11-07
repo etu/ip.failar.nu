@@ -1,16 +1,23 @@
 package main // import "github.com/etu/ip.failar.nu"
 
 import (
-	"github.com/gorilla/mux"
+	"flag"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	router := NewRouter()
+	var port uint
 
-	log.Fatal(http.ListenAndServe(":8123", router))
+	flag.UintVar(&port, "port", 8123, "Port to listen to")
+	flag.Parse()
+
+	router := NewRouter()
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), router))
 }
 
 func NewRouter() *mux.Router {

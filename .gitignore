@@ -1,2 +1,4 @@
-vendor/pkg/
 ip-failar-nu
+
+# Ignore nix outputs
+result*
