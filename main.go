@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -33,7 +34,9 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 	addr := r.RemoteAddr
 
 	if proxy := r.Header.Get("x-forwarded-for"); proxy != "" {
-		ip = proxy
+		proxys := strings.Split(proxy, ",")
+
+		ip = proxys[0]
 	} else {
 		ip, _, _ = net.SplitHostPort(addr)
 	}
