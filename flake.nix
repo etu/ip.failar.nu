@@ -20,5 +20,29 @@
       inherit system;
       overlays = [ self.overlay ];
     }).ip-failar-nu);
+
+    # Set up flake module
+    nixosModule = { inputs, options, modulesPath, config, lib }: let
+      cfg = config.services.ip-failar-nu;
+    in {
+      # Set up module options
+      options.services.ip-failar-nu.enable = lib.mkEnableOption
+        "Service that responds over http with the connecting clients IP";
+
+      # Set up module implementation
+      config = lib.mkIf cfg.enable {
+        systemd.services.ip-failar-nu = {
+          description = "ip-failar-nu";
+          after = [ "network.target" ];
+          wantedBy = [ "multi-user.target" ];
+          serviceConfig = {
+            Type = "simple";
+            User = "nobody";
+            ExecStart = "${self.defaultPackage.x86_64-linux}/bin/ip.failar.nu";
+            Restart = "always";
+          };
+        };
+      };
+    };
   };
 }
