@@ -2,12 +2,7 @@
 let
   cfg = config.services.ip-failar-nu;
 
-  package = pkgs.buildGoModule {
-    name = "ip-failar-nu-20201207";
-    src = ./.;
-    vendorSha256 = "sha256-D2/PVtoJGljsfHVNX4Q+ASu5R3PnRakApEn1rZK4lgM=";
-  };
-
+  package = pkgs.callPackage ./default.nix { };
 in
 {
   options.services.ip-failar-nu.enable = lib.mkEnableOption
