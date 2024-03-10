@@ -3,5 +3,8 @@ ip-failar-nu
 # Ignore nix outputs
 result*
 
+# Ignore debug builds
+__debug_*
+
 # Ignore direnv path
 .direnv/
