@@ -1,5 +1,5 @@
 module github.com/etu/ip.failar.nu
 
-go 1.13
+go 1.21.7
 
-require github.com/gorilla/mux v1.8.0
+require github.com/gorilla/mux v1.8.1
