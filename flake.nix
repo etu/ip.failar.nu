@@ -28,6 +28,19 @@
         });
       };
 
+      formatter = pkgs.alejandra;
+
+      devShells = flake-utils.lib.flattenTree {
+        default = pkgs.mkShell {
+          buildInputs = [
+            pkgs.gnumake
+            pkgs.delve # debugging
+            pkgs.go # language
+            pkgs.gopls # language server
+          ];
+        };
+      };
+
       # Set up flake module
       nixosModules.default = {
         options,
